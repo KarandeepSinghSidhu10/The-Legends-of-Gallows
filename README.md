@@ -85,9 +85,3 @@ We welcome contributions! Please open an Issue to discuss bug fixes, new roles, 
 5. Open a Pull Request.
 
 
-## License
-Distributed under the MIT License.
-
-Copyright (c) 2025 KarandeepSinghSidhu10
-
-See the LICENSE file for more information.
