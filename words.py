@@ -10,7 +10,6 @@ SHARED_CATEGORIES = [
     "Special Items"
 ]
 
-# Structure: ROLE_WORDS["RoleName"]["CategoryName"]["DifficultyLevel"] = [words]
 ROLE_WORDS = {
     "Warrior": {
         "Animals": {
@@ -342,10 +341,8 @@ def get_word_for(role_name, category_name, difficulty):
     """
     Return a random word based on role name, category, and difficulty.
     """
-    # 1. Try to get the specific word list
     words_list = ROLE_WORDS.get(role_name, {}).get(category_name, {}).get(difficulty, [])
     
-    # 2. Fallback check (should not be needed with complete lists)
     if not words_list:
         words_from_all_difficulties = []
         category_data = ROLE_WORDS.get(role_name, {}).get(category_name, {})
@@ -360,9 +357,8 @@ def get_word_for(role_name, category_name, difficulty):
                 for level_words in category_data.values():
                     all_words.extend(level_words)
         if not all_words:
-            return "oracle" # Default fail-safe word
+            return "oracle" 
         return random.choice(all_words).replace(" ", "").replace("-", "").lower()
 
-    # Select word and clean up (remove hyphens/spaces and lower case)
     w = random.choice(words_list)
     return w.replace(" ", "").replace("-", "").lower()
