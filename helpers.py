@@ -3,7 +3,6 @@ import sys
 import time
 from colorama import Fore, Style
 
-# Regex used to detect leading ANSI sequences
 _ansi_prefix_re = re.compile(r'^(?:\x1b\[[0-9;]*m)+')
 
 def typewriter_raw(text, delay=0.05):
@@ -28,7 +27,6 @@ def typewriter(text, delay=0.05):
     if delay == 0:
         print(text)
         return
-    # We use typewriter_raw for color handling when delay > 0
     typewriter_raw(text, delay)
 
 def reveal_letter_in_word(secret_word, display_word, letter_to_reveal):
@@ -51,11 +49,8 @@ def get_most_common_consonants(secret_word, guessed_letters):
     if not remaining_letters:
         return []
     
-    # Count frequencies
     from collections import Counter
     counts = Counter(remaining_letters)
-    # Sort by frequency (desc) and then by alphabetical order (asc)
     sorted_counts = sorted(counts.items(), key=lambda item: (-item[1], item[0]))
     
-    # Return the top 2 unique consonants
     return [c for c, count in sorted_counts[:2]]
